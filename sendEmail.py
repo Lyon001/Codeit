@@ -1,3 +1,18 @@
+#!/usr/bin/python3
+#_*_ coding:utf-8 _*_
+#__author__='Flowingsun'
+#__date__='2018.1.22'
+"""
+用Python的smtplib和email来简单的发送带有附件的邮件，演示是用QQ邮箱发送，发送之前，请手动开启QQ邮箱的smtp服务器并取得授权码passWord。
+使用方法：
+设置好邮发送人邮箱，密码，收件人的邮箱（可以添加多个收件人），要插入附件的文件路径
+如：
+self.sender = 'xxx@qq.com'
+self.passWord = 'xxx'
+self.string = 'xxx@qq.com;xxx@163.com;xxxxx@163.com'
+self.filePath = '/Users/lucifer/Desktop/1.jpg'
+self.fileName = 'hello.jpg'
+"""
 import smtplib
 from email import encoders
 from email.mime.text import MIMEText
@@ -6,12 +21,12 @@ from email.mime.multipart import MIMEMultipart
 
 class sendEmail():
     def __init__(self):
-        self.sender = '769010256@qq.com'#sender是邮件发送人，passWord是服务器授权码，mail_host是服务器地址（这里是QQsmtp服务器）
-        self.passWord = 'tvbqwkpgiwigbffe'
+        self.sender = 'xxx@qq.com'#sender是邮件发送人，passWord是服务器授权码，mail_host是服务器地址（这里是QQsmtp服务器）
+        self.passWord = 'xxx'
         self.mail_host = 'smtp.qq.com'
-        string = '769010256@qq.com;sunningdew@163.com;flowingsun007@163.com'
+        self.string = 'xxx@qq.com;xxx@163.com;xxxxx@163.com'
         self.receivers = []#receivers是邮件接收人，用列表保存，可以添加多个
-        self.receivers = string.split(';') if ';' in string else self.receivers.append(string)
+        self.receivers = self.string.split(';') if ';' in self.string else self.receivers.append(self.string)
         #设置email信息
         self.msg = MIMEMultipart()
         #邮件主题
@@ -22,11 +37,11 @@ class sendEmail():
         self.msg_content = input('请输入邮件内容：')
         self.msg.attach(MIMEText(self.msg_content, 'plain', 'utf-8'))
         # 添加附件就是加上一个MIMEBase，从本地读取一个文件:
-        self.filePath = '/Users/zhaoluyang/Desktop/宿敌180222.mp3'
-        self.fileName = u'宿敌.mp3'
+        self.filePath = 'xxx'
+        self.fileName = 'xxx.jpg'
         with open(self.filePath, 'rb') as f:
             # 设置附件的MIME和文件名，这里是jpg类型,可以换png或其他类型:
-            mime = MIMEBase('mp3','mp3', filename=self.fileName)
+            mime = MIMEBase('jpg','jpg', filename=self.fileName)
             # 加上必要的头信息:
             mime.add_header('Content-Disposition', 'attachment', filename=self.fileName)
             mime.add_header('Content-ID', '<0>')

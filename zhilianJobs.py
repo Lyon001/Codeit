@@ -1,6 +1,34 @@
+#!/usr/bin/python3
 #_*_ coding:utf-8 _*_
 #__author__='ZLY'
 #__date__='2017.8.22'
+"""
+1.程序介绍：
+此智联招聘查询工具，是用简单的爬虫调用智联招聘的api，可以用来爬取智联招聘上设定城市+职位关键字下所有的职位信息，信息存储到本地Mysql保存。
+2.使用方法：
+使用前需要先配置Mysql,如：host='localhost',user='root',password='XXX',db='XXX'.
+Mysql的建表SQL语句如下：
+CREATE TABLE `Java_南京` (
+  `ZL_Job_id` int(30) NOT NULL AUTO_INCREMENT,
+  `职位名称` varchar(255) DEFAULT NULL,
+  `公司名称` varchar(255) DEFAULT NULL,
+  `公司链接` varchar(255) DEFAULT NULL,
+  `职位链接` varchar(255) NOT NULL,
+  `职位月薪` varchar(255) DEFAULT NULL,
+  `工作地点` varchar(255) DEFAULT NULL,
+  `发布日期` varchar(255) DEFAULT NULL,
+  `工作性质` varchar(255) DEFAULT NULL,
+  `工作经验` varchar(255) DEFAULT NULL,
+  `最低学历` varchar(255) DEFAULT NULL,
+  `招聘人数` varchar(255) DEFAULT NULL,
+  `职位类别` varchar(255) DEFAULT NULL,
+  `岗位职责描述` varchar(3000) DEFAULT NULL,
+  `福利标签` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`职位链接`),
+  UNIQUE KEY `ZL_Job_id` (`ZL_Job_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8
+表新建好以后，程序运行时输入：City=南京,Keyword=Java,CollectionName=Java_南京即可。
+"""
 import requests,pymysql
 from pymysql import cursors
 from bs4 import BeautifulSoup
@@ -15,7 +43,7 @@ class zhilianJobs():
         self.City = input(f"{'Please input the city you want to search:'}")
         self.Keyword = input(f"{'The keyword of the job you want:'}")
         self.CollectionName = input(f"{'The collectionName of Mysql(or press Enter to use default name.):'}") or str(self.Keyword+'_'+self.City)
-        self.CONNECTION = pymysql.connect(host='localhost',user='root',password='admin',db='ZHAOPIN',charset='utf8',cursorclass=pymysql.cursors.DictCursor)
+        self.CONNECTION = pymysql.connect(host='xxx',user='xxx',password='xxx',db='xxx',charset='utf8',cursorclass=pymysql.cursors.DictCursor)
         self.SQL = f"INSERT INTO {self.CollectionName}(职位名称,公司名称,公司链接,职位链接,职位月薪,工作地点,发布日期,工作性质,工作经验,最低学历,招聘人数,职位类别,岗位职责描述,福利标签)VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 
     def city_start(self):

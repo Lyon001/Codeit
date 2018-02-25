@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+#_*_ coding:utf-8 _*_
+#__author__='Flowingsun'
+#__date__='2018.1.22'
 import re
 import pymysql
 import requests
@@ -8,7 +12,7 @@ class SearchWeather():
     def __init__(self):
         self.HEADERS ={
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 ''(KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'}
-        self.CONNECTION = pymysql.connect(host='localhost',user='root',password='admin',db='IP_POOL',charset='utf8',cursorclass=pymysql.cursors.DictCursor)
+        self.CONNECTION = pymysql.connect(host='xxx',user='xxx',password='xxx',db='IP_POOL',charset='utf8',cursorclass=pymysql.cursors.DictCursor)
 
     def getcityCode(self,cityName):
         SQL = "SELECT cityCode FROM cityWeather WHERE cityName='%s'" % cityName

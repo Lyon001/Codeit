@@ -1,12 +1,11 @@
 #!/usr/bin/python3
 #_*_ coding:utf-8 _*_
-#__author__='ZLY'
+#__author__='Flowingsun007'
 #__date__='2017.8.22'
 """
 1.程序介绍：
 此智联招聘查询工具，是用简单的爬虫调用智联招聘的api，可以用来爬取智联招聘上设定城市+职位关键字下所有的职位信息，信息存储到本地Mysql保存。
 关键字City输入：全国，则遍历查询默认的全国30个城市下相应的工作职位链接，否则只查询指定城市下的职位链接。
-
 
 2.使用方法：
 使用前需要先配置Mysql,如：host='localhost',user='root',password='XXX',db='XXX'.
@@ -30,6 +29,7 @@ CREATE TABLE `Java_南京` (
   PRIMARY KEY (`职位链接`),
   UNIQUE KEY `ZL_Job_id` (`ZL_Job_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8
+
 表新建好以后，程序运行时输入：
 City=南京
 Keyword=Java

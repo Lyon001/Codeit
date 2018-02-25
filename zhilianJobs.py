@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #_*_ coding:utf-8 _*_
-#__author__='Flowingsun007'
+#__author__='Flowingsun'
 #__date__='2017.8.22'
 """
 1.程序介绍：

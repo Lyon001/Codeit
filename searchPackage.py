@@ -1,4 +1,12 @@
-import json,requests
+#!/usr/bin/python3
+#_*_ coding:utf-8 _*_
+#__author__='Flowingsun'
+#__date__='2018.1.22'
+"""
+此程序很简单，调用的是快递100查询快递的接口，根据输入的快递运单号，自动判断所属快递公司，自动查询对应的包裹物流运输状态！
+"""
+import json
+import requests
 def searchPackage():
     #输入运单号码：
     packageNum = input('请输入运单号码：')
